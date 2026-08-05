@@ -28,8 +28,32 @@ const btnCompletadas = document.getElementById("completada");
 // VARIABLES
 // ==============================
 
+const STORAGE_KEY = "tareasOrganizador";
 let tareas = [];
 let filtroActual = "todas";
+
+function cargarTareas() {
+    const datos = localStorage.getItem(STORAGE_KEY);
+    if (!datos) return;
+
+    try {
+        const tareasGuardadas = JSON.parse(datos);
+        if (Array.isArray(tareasGuardadas)) {
+            tareas = tareasGuardadas.map(tarea => ({
+                ...tarea,
+                fecha: tarea.fecha || new Date().toLocaleString(),
+                completada: Boolean(tarea.completada)
+            }));
+        }
+    } catch (error) {
+        console.warn("Error al cargar tareas desde localStorage:", error);
+        tareas = [];
+    }
+}
+
+function guardarTareas() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tareas));
+}
 
 // ==============================
 // AGREGAR TAREA
@@ -68,6 +92,8 @@ function agregarTarea() {
     };
 
     tareas.push(nuevaTarea);
+
+    guardarTareas();
 
     inputTarea.value = "";
 
@@ -205,6 +231,7 @@ function renderizar() {
 
             tarea.completada = !tarea.completada;
 
+            guardarTareas();
             renderizar();
 
         });
@@ -227,6 +254,7 @@ function renderizar() {
                         return false;
                     }
                     tarea.nombre = textoEditado;
+                    guardarTareas();
                     renderizar();
                     return true;
                 }
@@ -244,6 +272,7 @@ function renderizar() {
                 cancelText: "Cancelar",
                 onConfirm: () => {
                     tareas = tareas.filter(t => t.id !== tarea.id);
+                    guardarTareas();
                     renderizar();
                     return true;
                 }
@@ -326,4 +355,5 @@ function activarBoton(boton) {
 // INICIO
 // ==============================
 
+cargarTareas();
 renderizar();
