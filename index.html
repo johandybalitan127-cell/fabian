@@ -6,6 +6,176 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow | Lista de Tareas</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Fondo decorativo -->
+    <div class="background"></div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+
+        <!-- Encabezado -->
+        <header>
+
+            <h1>
+                <i class="fa-solid fa-list-check"></i>
+                TaskFlow
+            </h1>
+
+            <p>Organiza tu día de forma simple y elegante.</p>
+
+        </header>
+
+        <!-- Estadísticas -->
+        <section class="stats">
+
+            <div class="card">
+                <h3 id="totalTareas">0</h3>
+                <span>Total</span>
+            </div>
+
+            <div class="card">
+                <h3 id="pendientes">0</h3>
+                <span>Pendientes</span>
+            </div>
+
+            <div class="card">
+                <h3 id="completadas">0</h3>
+                <span>Completadas</span>
+            </div>
+
+        </section>
+
+        <!-- Formulario -->
+        <section class="formulario">
+
+            <input
+                type="text"
+                id="tarea"
+                placeholder="Escribe una nueva tarea...">
+
+            <select id="prioridad">
+
+                <option value="Alta">🔴 Alta</option>
+
+                <option value="Media" selected>
+                    🟡 Media
+                </option>
+
+                <option value="Baja">
+                    🟢 Baja
+                </option>
+
+            </select>
+
+            <button id="btnAgregar">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Agregar
+
+            </button>
+
+        </section>
+
+        <!-- Botones de filtro -->
+        <section class="filtros">
+
+            <button class="activo" id="todas">
+                Todas
+            </button>
+
+            <button id="pendiente">
+                Pendientes
+            </button>
+
+            <button id="completada">
+                Completadas
+            </button>
+
+        </section>
+
+        <!-- Lista -->
+        <section id="listaTareas">
+
+            <!-- Aquí aparecerán las tareas -->
+
+        </section>
+
+    </div>
+
+    <!-- Plantilla para cada tarea -->
+    <template id="plantilla">
+
+        <div class="tarea">
+
+            <div class="info">
+
+                <h3 class="nombre">
+                    Nombre de la tarea
+                </h3>
+
+                <p class="fecha">
+                    05/08/2026
+                </p>
+
+                <span class="prioridad alta">
+                    Alta
+                </span>
+
+            </div>
+
+            <div class="acciones">
+
+                <button class="completar">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </button>
+
+                <button class="editar">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                </button>
+
+                <button class="eliminar">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </template>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
 </body>
 </html>
