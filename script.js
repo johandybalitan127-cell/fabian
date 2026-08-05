@@ -12,6 +12,13 @@ const plantilla = document.getElementById("plantilla");
 const total = document.getElementById("totalTareas");
 const pendientes = document.getElementById("pendientes");
 const completadas = document.getElementById("completadas");
+const toast = document.getElementById("toast");
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalMessage = document.getElementById("modalMessage");
+const modalInput = document.getElementById("modalInput");
+const modalConfirm = document.getElementById("modalConfirm");
+const modalCancel = document.getElementById("modalCancel");
 
 const btnTodas = document.getElementById("todas");
 const btnPendientes = document.getElementById("pendiente");
@@ -41,7 +48,7 @@ function agregarTarea() {
     const texto = inputTarea.value.trim();
 
     if (texto === "") {
-        alert("⚠️ Debes escribir una tarea.");
+        mostrarToast("⚠️ Debes escribir una tarea.", "error");
         inputTarea.focus();
         return;
     }
@@ -68,6 +75,67 @@ function agregarTarea() {
 
     renderizar();
 }
+
+function mostrarToast(mensaje, tipo = "error") {
+    if (!toast) return;
+
+    toast.textContent = mensaje;
+    toast.className = "toast show " + tipo;
+
+    clearTimeout(toast.hideTimeout);
+    toast.hideTimeout = setTimeout(() => {
+        toast.className = "toast";
+    }, 3200);
+}
+
+let modalConfirmCallback = null;
+
+function abrirModal({
+    title,
+    message,
+    value = "",
+    placeholder = "",
+    confirmText = "Aceptar",
+    cancelText = "Cancelar",
+    showInput = true,
+    onConfirm
+}) {
+    if (!modal) return;
+
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+    modalInput.value = value;
+    modalInput.placeholder = placeholder;
+    modalInput.style.display = showInput ? "block" : "none";
+    modalConfirm.textContent = confirmText;
+    modalCancel.textContent = cancelText;
+    modal.classList.add("open");
+
+    modalConfirmCallback = onConfirm;
+    if (showInput) {
+        setTimeout(() => modalInput.focus(), 100);
+    }
+}
+
+function cerrarModal() {
+    if (!modal) return;
+    modal.classList.remove("open");
+    modalConfirmCallback = null;
+}
+
+modalConfirm?.addEventListener("click", () => {
+    if (!modalConfirmCallback) return;
+
+    const result = modalConfirmCallback(modalInput.value);
+    if (result !== false) {
+        cerrarModal();
+    }
+});
+
+modalCancel?.addEventListener("click", cerrarModal);
+modal?.addEventListener("click", (event) => {
+    if (event.target === modal) cerrarModal();
+});
 
 // ==============================
 // RENDERIZAR
@@ -144,39 +212,42 @@ function renderizar() {
         // Editar
 
         clon.querySelector(".editar").addEventListener("click", () => {
-
-            let nuevoTexto = prompt("Editar tarea:", tarea.nombre);
-
-            if (nuevoTexto === null) return;
-
-            nuevoTexto = nuevoTexto.trim();
-
-            if (nuevoTexto === "") {
-
-                alert("La tarea no puede quedar vacía.");
-
-                return;
-
-            }
-
-            tarea.nombre = nuevoTexto;
-
-            renderizar();
-
+            abrirModal({
+                title: "Editar tarea",
+                message: "Modifica el nombre de la tarea:",
+                value: tarea.nombre,
+                placeholder: "Nueva tarea...",
+                confirmText: "Guardar",
+                cancelText: "Cancelar",
+                showInput: true,
+                onConfirm: (valor) => {
+                    const textoEditado = valor.trim();
+                    if (textoEditado === "") {
+                        mostrarToast("La tarea no puede quedar vacía.", "error");
+                        return false;
+                    }
+                    tarea.nombre = textoEditado;
+                    renderizar();
+                    return true;
+                }
+            });
         });
 
         // Eliminar
 
         clon.querySelector(".eliminar").addEventListener("click", () => {
-
-            const confirmar = confirm("¿Deseas eliminar esta tarea?");
-
-            if (!confirmar) return;
-
-            tareas = tareas.filter(t => t.id !== tarea.id);
-
-            renderizar();
-
+            abrirModal({
+                title: "Eliminar tarea",
+                message: "¿Deseas eliminar esta tarea?",
+                showInput: false,
+                confirmText: "Eliminar",
+                cancelText: "Cancelar",
+                onConfirm: () => {
+                    tareas = tareas.filter(t => t.id !== tarea.id);
+                    renderizar();
+                    return true;
+                }
+            });
         });
 
         lista.appendChild(clon);
