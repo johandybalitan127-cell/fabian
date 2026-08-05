@@ -59,6 +59,45 @@ body{
    HEADER
 ========================== */
 
+.logo-bar{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:18px;
+}
+
+.logo-badge{
+    width:58px;
+    height:58px;
+    border-radius:18px;
+    background:rgba(255,255,255,.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid rgba(255,255,255,.25);
+    box-shadow:0 10px 20px rgba(0,0,0,.12);
+}
+
+.logo-badge i{
+    color:#fff;
+    font-size:24px;
+}
+
+.logo-copy{
+    display:flex;
+    flex-direction:column;
+    color:#fff;
+}
+
+.logo-copy strong{
+    font-size:20px;
+}
+
+.logo-copy span{
+    color:rgba(255,255,255,.82);
+    font-size:14px;
+}
+
 header{
 
     text-align:center;
