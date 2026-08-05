@@ -493,3 +493,42 @@ header p{
     }
 
 }
+/*==========================
+  TÍTULO
+==========================*/
+
+.titulo{
+
+    font-size:48px;
+
+    font-weight:700;
+
+    color:#ff4fa3;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.8),
+        0 0 25px rgba(255,79,163,.5);
+
+    letter-spacing:2px;
+
+}
+
+.titulo i{
+
+    color:#ff7eb6;
+
+    margin-right:10px;
+
+}
+
+header p{
+
+    margin-top:10px;
+
+    font-size:18px;
+
+    color:white;
+
+    font-weight:500;
+
+}
