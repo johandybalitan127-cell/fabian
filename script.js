@@ -145,6 +145,12 @@ inputTarea.addEventListener("keypress", function (e) {
     }
 });
 
+inputTarea.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+        agregarTarea();
+    }
+});
+
 buscador?.addEventListener("input", () => {
     busquedaActual = buscador.value.trim().toLowerCase();
     renderizar();
