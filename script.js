@@ -25,6 +25,7 @@ const modalCancel = document.getElementById("modalCancel");
 const btnTodas = document.getElementById("todas");
 const btnPendientes = document.getElementById("pendiente");
 const btnCompletadas = document.getElementById("completada");
+const btnLimpiarCompletadas = document.getElementById("btnLimpiarCompletadas");
 const buscador = document.getElementById("buscador");
 const themeToggle = document.getElementById("themeToggle");
 const THEME_KEY = "modoTema";
@@ -141,6 +142,23 @@ inputTarea.addEventListener("keypress", function (e) {
 buscador?.addEventListener("input", () => {
     busquedaActual = buscador.value.trim().toLowerCase();
     renderizar();
+});
+
+btnLimpiarCompletadas?.addEventListener("click", () => {
+    abrirModal({
+        title: "Limpiar tareas completadas",
+        message: "¿Quieres eliminar todas las tareas completadas?",
+        showInput: false,
+        confirmText: "Eliminar",
+        cancelText: "Cancelar",
+        onConfirm: () => {
+            tareas = tareas.filter(t => !t.completada);
+            guardarTareas();
+            renderizar();
+            mostrarToast("Tareas completadas eliminadas.", "success");
+            return true;
+        }
+    });
 });
 
 function agregarTarea() {

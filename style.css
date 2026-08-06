@@ -873,6 +873,17 @@ body.dark .buscador input{
 
 }
 
+.btn-limpiar{
+    background:#f472b6;
+    color:#fff;
+    box-shadow:0 10px 20px rgba(244,114,182,.18);
+}
+
+.btn-limpiar:hover{
+    background:#db2777;
+    color:#fff;
+}
+
 .filtros button:hover{
 
     background:#6C63FF;
