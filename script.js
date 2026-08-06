@@ -31,6 +31,7 @@ const btnCompletadas = document.getElementById("completada");
 const STORAGE_KEY = "tareasOrganizador";
 let tareas = [];
 let filtroActual = "todas";
+let ultimaCantidadPendientes = 0;
 
 function cargarTareas() {
     const datos = localStorage.getItem(STORAGE_KEY);
@@ -53,6 +54,14 @@ function cargarTareas() {
 
 function guardarTareas() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tareas));
+}
+
+function recordarPendientes() {
+    const pendientesActivas = tareas.filter(t => !t.completada).length;
+    if (pendientesActivas > 0 && ultimaCantidadPendientes === 0) {
+        mostrarToast(`Recuerda: tienes ${pendientesActivas} tarea${pendientesActivas === 1 ? "" : "s"} pendiente${pendientesActivas === 1 ? "" : "s"}.`, "success");
+    }
+    ultimaCantidadPendientes = pendientesActivas;
 }
 
 // ==============================
@@ -284,6 +293,7 @@ function renderizar() {
     });
 
     actualizarContadores();
+    recordarPendientes();
 
 }
 

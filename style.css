@@ -162,12 +162,55 @@ header p{
 
 }
 
+.card-icon{
+    display:flex;
+    justify-content:center;
+    margin-bottom:16px;
+}
+
+.card-icon img{
+    width:48px;
+    height:48px;
+}
+
 .card h3{
 
     font-size:30px;
 
     color:#63dbff;
 
+}
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:24px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:24px;
+    padding:24px 28px;
+    margin-bottom:30px;
+}
+
+.hero-text h2{
+    font-size:32px;
+    color:#fff;
+    margin-bottom:12px;
+}
+
+.hero-text p{
+    color:rgba(255,255,255,.9);
+    line-height:1.6;
+    max-width:520px;
+}
+
+.hero-img{
+    width:100%;
+    max-width:360px;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 20px 40px rgba(0,0,0,.16);
 }
 
 .card span{
