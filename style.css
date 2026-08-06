@@ -16,11 +16,126 @@ body{
     align-items:center;
     background:linear-gradient(135deg,#ff63b1,#f75f5f,#67E8F9);
     overflow-x:hidden;
+    color:#fff;
 }
 
-/* ==========================
-   FONDO
-========================== */
+body.dark{
+    background:linear-gradient(135deg,#0a0f24,#111827,#0f172a);
+    color:#e5e7eb;
+}
+
+body.dark .background{
+    background:
+    radial-gradient(circle at top left,rgba(255,255,255,.08),transparent 35%),
+    radial-gradient(circle at bottom right,rgba(255,255,255,.05),transparent 30%);
+}
+
+body.dark .container{
+    background:rgba(15,23,42,.82);
+    border-color:rgba(255,255,255,.1);
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+body.dark .logo-badge{
+    background:rgba(255,255,255,.08);
+    border-color:rgba(255,255,255,.12);
+}
+
+body.dark header h1,
+body.dark header p,
+body.dark .logo-copy,
+body.dark .hero-text h2,
+body.dark .hero-text p,
+body.dark .card span,
+body.dark .info h3,
+body.dark .fecha,
+body.dark .prioridad,
+body.dark .card h3,
+body.dark .formulario input,
+body.dark .formulario select,
+body.dark .filtros button,
+body.dark .tarea{
+    color:#e5e7eb;
+}
+
+body.dark .hero-text p,
+body.dark .header p,
+body.dark .card span,
+body.dark .fecha{
+    color:rgba(229,231,235,.8);
+}
+
+body.dark .hero{
+    background:rgba(255,255,255,.05);
+    border-color:rgba(255,255,255,.1);
+}
+
+body.dark .hero-img{
+    border-color:rgba(255,255,255,.12);
+}
+
+body.dark .card{
+    background:rgba(255,255,255,.05);
+    border:none;
+}
+
+body.dark .formulario input,
+body.dark .formulario select{
+    background:rgba(255,255,255,.08);
+    color:#f8fafc;
+}
+
+body.dark .formulario button{
+    background:#7c3aed;
+}
+
+body.dark .formulario button:hover{
+    background:#6d28d9;
+}
+
+body.dark .filtros button{
+    background:rgba(255,255,255,.08);
+    color:#f8fafc;
+}
+
+body.dark .filtros button:hover,
+body.dark .activo{
+    background:#7c3aed !important;
+    color:#fff;
+}
+
+body.dark .tarea{
+    background:rgba(255,255,255,.05);
+    box-shadow:0 10px 25px rgba(0,0,0,.22);
+}
+
+body.dark .info h3{
+    color:#fff;
+}
+
+body.dark .prioridad.alta{
+    background:#f87171;
+}
+
+body.dark .prioridad.media{
+    background:#fbbf24;
+}
+
+body.dark .prioridad.baja{
+    background:#34d399;
+}
+
+body.dark .toast{
+    background:rgba(15,23,42,.96);
+}
+
+body.dark .modal{
+    background:rgba(15,23,42,0.88);
+}
+
+body.dark .modal__card{
+    background:#111827;
+}
 
 .background{
     position:fixed;
@@ -182,6 +297,29 @@ header,
     align-items:center;
     gap:14px;
     margin-bottom:18px;
+}
+
+.theme-toggle{
+    margin-left:auto;
+    border:none;
+    background:rgba(255,255,255,.18);
+    color:#fff;
+    width:46px;
+    height:46px;
+    border-radius:16px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+}
+
+.theme-toggle:hover{
+    background:rgba(255,255,255,.28);
+}
+
+.theme-toggle i{
+    font-size:18px;
 }
 
 .logo-badge{

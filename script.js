@@ -23,6 +23,8 @@ const modalCancel = document.getElementById("modalCancel");
 const btnTodas = document.getElementById("todas");
 const btnPendientes = document.getElementById("pendiente");
 const btnCompletadas = document.getElementById("completada");
+const themeToggle = document.getElementById("themeToggle");
+const THEME_KEY = "modoTema";
 
 // ==============================
 // VARIABLES
@@ -62,6 +64,33 @@ function recordarPendientes() {
         mostrarToast(`Recuerda: tienes ${pendientesActivas} tarea${pendientesActivas === 1 ? "" : "s"} pendiente${pendientesActivas === 1 ? "" : "s"}.`, "success");
     }
     ultimaCantidadPendientes = pendientesActivas;
+}
+
+function guardarTema(modo) {
+    localStorage.setItem(THEME_KEY, modo);
+}
+
+function aplicarTema(modo) {
+    document.body.classList.toggle("dark", modo === "dark");
+    const icon = themeToggle?.querySelector("i");
+    if (icon) {
+        icon.className = modo === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    }
+}
+
+function cargarTema() {
+    const temaGuardado = localStorage.getItem(THEME_KEY);
+    const tema = temaGuardado === "dark" ? "dark" : "light";
+    aplicarTema(tema);
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        const isDark = document.body.classList.contains("dark");
+        const nuevoModo = isDark ? "light" : "dark";
+        aplicarTema(nuevoModo);
+        guardarTema(nuevoModo);
+    });
 }
 
 // ==============================
