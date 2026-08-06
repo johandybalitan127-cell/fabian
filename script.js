@@ -12,6 +12,8 @@ const plantilla = document.getElementById("plantilla");
 const total = document.getElementById("totalTareas");
 const pendientes = document.getElementById("pendientes");
 const completadas = document.getElementById("completadas");
+const progressPercent = document.getElementById("progressPercent");
+const progressFill = document.getElementById("progressFill");
 const toast = document.getElementById("toast");
 const modal = document.getElementById("modal");
 const modalTitle = document.getElementById("modalTitle");
@@ -384,11 +386,21 @@ function renderizar() {
 
 function actualizarContadores() {
 
-    total.textContent = tareas.length;
+    const totalTareas = tareas.length;
+    const tareasCompletadas = tareas.filter(t => t.completada).length;
+    const porcentaje = totalTareas === 0 ? 0 : Math.round((tareasCompletadas / totalTareas) * 100);
 
+    total.textContent = totalTareas;
     pendientes.textContent = tareas.filter(t => !t.completada).length;
+    completadas.textContent = tareasCompletadas;
 
-    completadas.textContent = tareas.filter(t => t.completada).length;
+    if (progressPercent) {
+        progressPercent.textContent = `${porcentaje}%`;
+    }
+
+    if (progressFill) {
+        progressFill.style.width = `${porcentaje}%`;
+    }
 
 }
 
