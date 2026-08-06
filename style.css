@@ -392,11 +392,107 @@ header h1 i{
 
 header p{
 
-    color:white;
+    color:#f8d7ff;
 
-    opacity:.9;
+    opacity:.95;
 
     font-size:17px;
+
+    font-family:'Inter',sans-serif;
+
+    letter-spacing:.02em;
+
+}
+
+.hero-text h2{
+
+    font-size:34px;
+
+    margin-bottom:14px;
+
+    color:#fff;
+
+    font-family:'Inter',sans-serif;
+
+    font-weight:700;
+
+    letter-spacing:.01em;
+
+    text-shadow:0 0 18px rgba(255,255,255,.18);
+
+}
+
+.hero-text p{
+
+    color:#d8f4ff;
+
+    font-family:'Inter',sans-serif;
+
+    font-size:16px;
+
+    line-height:1.8;
+
+}
+
+.formulario button{
+
+    background:linear-gradient(135deg,#ff6fd8,#7c3aed);
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:15px 22px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+    box-shadow:0 14px 30px rgba(124,62,237,.22);
+
+}
+
+.formulario button:hover{
+
+    background:linear-gradient(135deg,#7c3aed,#ff6fd8);
+
+    transform:scale(1.03);
+
+}
+
+.filtros button{
+
+    border:none;
+
+    background:white;
+
+    padding:12px 25px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-weight:600;
+
+    color:#3b3b98;
+
+    box-shadow:0 8px 20px rgba(59,59,152,.12);
+
+}
+
+.filtros button:hover{
+
+    background:#6C63FF;
+
+    color:white;
+
+    transform:translateY(-2px);
 
 }
 
