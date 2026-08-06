@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> tareas organizadas| Lista de Tareas</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Fondo decorativo -->
+    <div class="background"></div>
+    <div class="background-clock" aria-hidden="true">
+        <div class="clock-face">
+            <span class="clock-hand clock-hour"></span>
+            <span class="clock-hand clock-minute"></span>
+            <span class="clock-hand clock-second"></span>
+            <div class="clock-center"></div>
+            <span class="clock-label">FioBCHA</span>
+        </div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <img class="decorative-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 280'%3E%3Cdefs%3E%3CradialGradient id='a' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff' stop-opacity='0.95'/%3E%3Cstop offset='100%25' stop-color='%236C63FF' stop-opacity='0.28'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='140' cy='140' r='120' fill='url(%23a)'/%3E%3C/svg%3E" alt="Decoración de la página" />
+
+        <div class="logo-bar">
+            <div class="logo-badge">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div class="logo-copy">
+                <strong>FioBCHA</strong>
+                <span>Organizador de Tareas</span>
+            </div>
+            <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo claro/oscuro">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+
+        <!-- Encabezado -->
+        <header>
+
+            <h1>
+                <i class="fa-solid fa-list-check"></i>
+                Organizador de Tareas
+            </h1>
+
+            <p>Organiza tus tareas de forma ordenada.</p>
+
+        </header>
+
+        <!-- Hero image -->
+        <section class="hero">
+            <div class="hero-text">
+                <h2>Tu lista de tareas siempre a la vista</h2>
+                <p>Controla tus pendientes con estilo y organización visual inmediata.</p>
+            </div>
+            <img class="hero-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 420'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%236C63FF'/%3E%3Cstop offset='1' stop-color='%23A78BFA'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='560' height='420' rx='40' fill='url(%23g)'/%3E%3Cpath d='M120 280h320v-38H120z' fill='%23fff' opacity='.16'/%3E%3Crect x='132' y='90' width='296' height='230' rx='30' fill='%23fff' opacity='.9'/%3E%3Cpath d='M178 140h220' stroke='%236C63FF' stroke-width='18' stroke-linecap='round'/%3E%3Cpath d='M178 190h220' stroke='%236C63FF' stroke-width='18' stroke-linecap='round'/%3E%3Cpath d='M178 240h160' stroke='%236C63FF' stroke-width='18' stroke-linecap='round'/%3E%3Cpath d='M180 138l22 22 38-38' fill='none' stroke='%2310b981' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M180 188l22 22 38-38' fill='none' stroke='%23f59e0b' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M180 238l22 22 38-38' fill='none' stroke='%23ef4444' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" alt="Ilustración de lista de tareas" />
+        </section>
+
+        <!-- Estadísticas -->
+        <section class="stats">
+
+            <div class="card">
+                <div class="card-icon">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='10' y='8' width='44' height='48' rx='10' ry='10' fill='%23fff' stroke='%236C63FF' stroke-width='4'/%3E%3Cpath d='M22 20h20' stroke='%236C63FF' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M22 30h20' stroke='%236C63FF' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M22 40h12' stroke='%236C63FF' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" alt="Icono total" />
+                </div>
+                <h3 id="totalTareas">0</h3>
+                <span>Total</span>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='22' fill='%23fff' stroke='%23f59e0b' stroke-width='4'/%3E%3Cline x1='32' y1='18' x2='32' y2='34' stroke='%23f59e0b' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='32' y1='32' x2='42' y2='38' stroke='%23f59e0b' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" alt="Icono pendientes" />
+                </div>
+                <h3 id="pendientes">0</h3>
+                <span>Pendientes</span>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='22' fill='%23fff' stroke='%2310b981' stroke-width='4'/%3E%3Cpath d='M20 34l8 8 16-16' fill='none' stroke='%2310b981' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" alt="Icono completadas" />
+                </div>
+                <h3 id="completadas">0</h3>
+                <span>Completadas</span>
+            </div>
+
+        </section>
+
+        <!-- Progreso -->
+        <section class="progress-container">
+            <div class="progress-header">
+                <span>Progreso completado</span>
+                <strong id="progressPercent">0%</strong>
+            </div>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+        </section>
+
+        <!-- Formulario -->
+        <section class="formulario">
+
+            <input
+                type="text"
+                id="tarea"
+                placeholder="Escribe una nueva tarea...">
+
+            <select id="prioridad">
+
+                <option value="Alta">🔴 Alta</option>
+
+                <option value="Media" selected>
+                    🟡 Media
+                </option>
+
+                <option value="Baja">
+                    🟢 Baja
+                </option>
+
+            </select>
+
+            <button id="btnAgregar">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Agregar
+
+            </button>
+
+        </section>
+
+        <!-- Botones de filtro -->
+        <section class="filtros">
+
+            <button class="activo" id="todas">
+                Todas
+            </button>
+
+            <button id="pendiente">
+                Pendientes
+            </button>
+
+            <button id="completada">
+                Completadas
+            </button>
+
+        </section>
+
+        <!-- Lista -->
+        <section id="listaTareas">
+
+            <!-- Aquí aparecerán las tareas -->
+
+        </section>
+
+    </div>
+
+    <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+        <div class="modal__card">
+            <h2 id="modalTitle">Título</h2>
+            <p id="modalMessage">Mensaje</p>
+            <input id="modalInput" class="modal__input" type="text" />
+            <div class="modal-actions">
+                <button id="modalCancel" type="button" class="cancel-btn">Cancelar</button>
+                <button id="modalConfirm" type="button" class="confirm-btn">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plantilla para cada tarea -->
+    <template id="plantilla">
+
+        <div class="tarea">
+
+            <div class="info">
+
+                <h3 class="nombre">
+                    Nombre de la tarea
+                </h3>
+
+                <p class="fecha">
+                    05/08/2026
+                </p>
+
+                <span class="prioridad alta">
+                    Alta
+                </span>
+
+            </div>
+
+            <div class="acciones">
+
+                <button class="completar">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </button>
+
+                <button class="editar">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                </button>
+
+                <button class="eliminar">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </template>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
