@@ -62,8 +62,36 @@ function recordarPendientes() {
     const pendientesActivas = tareas.filter(t => !t.completada).length;
     if (pendientesActivas > 0 && ultimaCantidadPendientes === 0) {
         mostrarToast(`Recuerda: tienes ${pendientesActivas} tarea${pendientesActivas === 1 ? "" : "s"} pendiente${pendientesActivas === 1 ? "" : "s"}.`, "success");
+        reproducirSonidoNotificacion();
     }
     ultimaCantidadPendientes = pendientesActivas;
+}
+
+function reproducirSonidoNotificacion() {
+    try {
+        const contexto = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = contexto.createOscillator();
+        const ganancia = contexto.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(880, contexto.currentTime);
+
+        ganancia.gain.setValueAtTime(0, contexto.currentTime);
+        ganancia.gain.linearRampToValueAtTime(0.22, contexto.currentTime + 0.02);
+        ganancia.gain.linearRampToValueAtTime(0, contexto.currentTime + 0.22);
+
+        oscillator.connect(ganancia);
+        ganancia.connect(contexto.destination);
+
+        oscillator.start();
+        oscillator.stop(contexto.currentTime + 0.22);
+
+        oscillator.onended = () => {
+            if (contexto.close) contexto.close();
+        };
+    } catch (error) {
+        console.warn("No se pudo reproducir el sonido de notificación:", error);
+    }
 }
 
 function guardarTema(modo) {
