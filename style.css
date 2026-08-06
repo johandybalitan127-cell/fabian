@@ -964,6 +964,8 @@ body.dark .buscador input{
 
     animation:aparecer .4s;
 
+    border:1px solid rgba(0,0,0,.06);
+
 }
 
 .tarea:hover{
@@ -971,6 +973,8 @@ body.dark .buscador input{
     transform:translateY(-4px);
 
     box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+    border-color:rgba(108,99,255,.3);
 
 }
 
