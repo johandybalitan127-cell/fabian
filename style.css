@@ -591,6 +591,34 @@ header p{
 
 }
 
+.prioridad-resumen{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:25px;
+}
+
+.resumen-card{
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:18px;
+    padding:18px;
+    text-align:center;
+    transition:.3s;
+}
+
+.resumen-card strong{
+    display:block;
+    font-size:28px;
+    margin-bottom:8px;
+    color:#fff;
+}
+
+.resumen-card span{
+    color:rgba(255,255,255,.8);
+    font-size:14px;
+}
+
 .progress-container{
     background:rgba(255,255,255,.18);
     border:1px solid rgba(255,255,255,.22);
@@ -654,6 +682,27 @@ body.dark .progress-bar{
 
     margin-bottom:25px;
 
+}
+
+.buscador{
+    margin-bottom:25px;
+}
+
+.buscador input{
+    width:100%;
+    border:none;
+    border-radius:14px;
+    padding:15px;
+    font-size:16px;
+    outline:none;
+    background:rgba(255,255,255,.92);
+    color:#111;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+body.dark .buscador input{
+    background:rgba(255,255,255,.08);
+    color:#f8fafc;
 }
 
 .formulario input,
@@ -852,6 +901,17 @@ body.dark .progress-bar{
 
 }
 
+.btn-limpiar{
+    background:#f472b6;
+    color:#fff;
+    box-shadow:0 10px 20px rgba(244,114,182,.18);
+}
+
+.btn-limpiar:hover{
+    background:#db2777;
+    color:#fff;
+}
+
 .filtros button:hover{
 
     background:#6C63FF;
@@ -904,6 +964,8 @@ body.dark .progress-bar{
 
     animation:aparecer .4s;
 
+    border:1px solid rgba(0,0,0,.06);
+
 }
 
 .tarea:hover{
@@ -911,6 +973,8 @@ body.dark .progress-bar{
     transform:translateY(-4px);
 
     box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+    border-color:rgba(108,99,255,.3);
 
 }
 
@@ -1086,6 +1150,26 @@ body.dark .progress-bar{
 
     }
 
+    .hero{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .hero-img{
+        width:100%;
+        max-width:none;
+    }
+
+    .filtros{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .filtros button,
+    .btn-limpiar{
+        width:100%;
+    }
+
     .tarea{
 
         flex-direction:column;
@@ -1102,6 +1186,10 @@ body.dark .progress-bar{
 
         justify-content:flex-end;
 
+    }
+
+    .prioridad-resumen{
+        grid-template-columns:1fr;
     }
 
 }

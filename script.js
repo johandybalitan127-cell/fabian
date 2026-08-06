@@ -12,6 +12,9 @@ const plantilla = document.getElementById("plantilla");
 const total = document.getElementById("totalTareas");
 const pendientes = document.getElementById("pendientes");
 const completadas = document.getElementById("completadas");
+const prioridadAlta = document.getElementById("prioridadAlta");
+const prioridadMedia = document.getElementById("prioridadMedia");
+const prioridadBaja = document.getElementById("prioridadBaja");
 const progressPercent = document.getElementById("progressPercent");
 const progressFill = document.getElementById("progressFill");
 const toast = document.getElementById("toast");
@@ -25,11 +28,15 @@ const modalCancel = document.getElementById("modalCancel");
 const btnTodas = document.getElementById("todas");
 const btnPendientes = document.getElementById("pendiente");
 const btnCompletadas = document.getElementById("completada");
+const btnLimpiarCompletadas = document.getElementById("btnLimpiarCompletadas");
+const buscador = document.getElementById("buscador");
 const themeToggle = document.getElementById("themeToggle");
 const THEME_KEY = "modoTema";
 
 // ==============================
 // VARIABLES
+
+let busquedaActual = "";
 // ==============================
 
 const STORAGE_KEY = "tareasOrganizador";
@@ -115,11 +122,14 @@ function cargarTema() {
 }
 
 if (themeToggle) {
+    themeToggle.setAttribute("aria-pressed", "false");
+    themeToggle.setAttribute("title", "Cambiar tema");
     themeToggle.addEventListener("click", () => {
         const isDark = document.body.classList.contains("dark");
         const nuevoModo = isDark ? "light" : "dark";
         aplicarTema(nuevoModo);
         guardarTema(nuevoModo);
+        themeToggle.setAttribute("aria-pressed", String(nuevoModo === "dark"));
     });
 }
 
@@ -133,6 +143,34 @@ inputTarea.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
         agregarTarea();
     }
+});
+
+inputTarea.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+        agregarTarea();
+    }
+});
+
+buscador?.addEventListener("input", () => {
+    busquedaActual = buscador.value.trim().toLowerCase();
+    renderizar();
+});
+
+btnLimpiarCompletadas?.addEventListener("click", () => {
+    abrirModal({
+        title: "Limpiar tareas completadas",
+        message: "¿Quieres eliminar todas las tareas completadas?",
+        showInput: false,
+        confirmText: "Eliminar",
+        cancelText: "Cancelar",
+        onConfirm: () => {
+            tareas = tareas.filter(t => !t.completada);
+            guardarTareas();
+            renderizar();
+            mostrarToast("Tareas completadas eliminadas.", "success");
+            return true;
+        }
+    });
 });
 
 function agregarTarea() {
@@ -265,9 +303,13 @@ function renderizar() {
 
     let tareasMostrar = tareas;
 
+    if (busquedaActual) {
+        tareasMostrar = tareasMostrar.filter(t => t.nombre.toLowerCase().includes(busquedaActual));
+    }
+
     if (filtroActual === "pendientes") {
 
-        tareasMostrar = tareas.filter(t => !t.completada);
+        tareasMostrar = tareasMostrar.filter(t => !t.completada);
 
     }
 
@@ -389,10 +431,16 @@ function actualizarContadores() {
     const totalTareas = tareas.length;
     const tareasCompletadas = tareas.filter(t => t.completada).length;
     const porcentaje = totalTareas === 0 ? 0 : Math.round((tareasCompletadas / totalTareas) * 100);
+    const alta = tareas.filter(t => t.prioridad === "Alta").length;
+    const media = tareas.filter(t => t.prioridad === "Media").length;
+    const baja = tareas.filter(t => t.prioridad === "Baja").length;
 
     total.textContent = totalTareas;
     pendientes.textContent = tareas.filter(t => !t.completada).length;
     completadas.textContent = tareasCompletadas;
+    prioridadAlta.textContent = alta;
+    prioridadMedia.textContent = media;
+    prioridadBaja.textContent = baja;
 
     if (progressPercent) {
         progressPercent.textContent = `${porcentaje}%`;
