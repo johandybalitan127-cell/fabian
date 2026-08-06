@@ -122,11 +122,14 @@ function cargarTema() {
 }
 
 if (themeToggle) {
+    themeToggle.setAttribute("aria-pressed", "false");
+    themeToggle.setAttribute("title", "Cambiar tema");
     themeToggle.addEventListener("click", () => {
         const isDark = document.body.classList.contains("dark");
         const nuevoModo = isDark ? "light" : "dark";
         aplicarTema(nuevoModo);
         guardarTema(nuevoModo);
+        themeToggle.setAttribute("aria-pressed", String(nuevoModo === "dark"));
     });
 }
 
