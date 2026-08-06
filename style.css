@@ -591,6 +591,34 @@ header p{
 
 }
 
+.prioridad-resumen{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:25px;
+}
+
+.resumen-card{
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:18px;
+    padding:18px;
+    text-align:center;
+    transition:.3s;
+}
+
+.resumen-card strong{
+    display:block;
+    font-size:28px;
+    margin-bottom:8px;
+    color:#fff;
+}
+
+.resumen-card span{
+    color:rgba(255,255,255,.8);
+    font-size:14px;
+}
+
 .progress-container{
     background:rgba(255,255,255,.18);
     border:1px solid rgba(255,255,255,.22);
