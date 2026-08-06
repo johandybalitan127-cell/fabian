@@ -38,6 +38,7 @@ body{
 
 .container{
 
+    position:relative;
     width:95%;
     max-width:950px;
 
@@ -53,6 +54,27 @@ body{
 
     box-shadow:0 20px 40px rgba(0,0,0,.20);
 
+}
+
+.decorative-img{
+    position:absolute;
+    top:-20px;
+    right:-20px;
+    width:220px;
+    opacity:.78;
+    pointer-events:none;
+    z-index:1;
+}
+
+.logo-bar,
+header,
+.hero,
+.stats,
+.formulario,
+.filtros,
+#listaTareas{
+    position:relative;
+    z-index:2;
 }
 
 /* ==========================
