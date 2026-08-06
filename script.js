@@ -25,11 +25,14 @@ const modalCancel = document.getElementById("modalCancel");
 const btnTodas = document.getElementById("todas");
 const btnPendientes = document.getElementById("pendiente");
 const btnCompletadas = document.getElementById("completada");
+const buscador = document.getElementById("buscador");
 const themeToggle = document.getElementById("themeToggle");
 const THEME_KEY = "modoTema";
 
 // ==============================
 // VARIABLES
+
+let busquedaActual = "";
 // ==============================
 
 const STORAGE_KEY = "tareasOrganizador";
@@ -133,6 +136,11 @@ inputTarea.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
         agregarTarea();
     }
+});
+
+buscador?.addEventListener("input", () => {
+    busquedaActual = buscador.value.trim().toLowerCase();
+    renderizar();
 });
 
 function agregarTarea() {
@@ -265,9 +273,13 @@ function renderizar() {
 
     let tareasMostrar = tareas;
 
+    if (busquedaActual) {
+        tareasMostrar = tareasMostrar.filter(t => t.nombre.toLowerCase().includes(busquedaActual));
+    }
+
     if (filtroActual === "pendientes") {
 
-        tareasMostrar = tareas.filter(t => !t.completada);
+        tareasMostrar = tareasMostrar.filter(t => !t.completada);
 
     }
 
