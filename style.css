@@ -29,7 +29,103 @@ body{
     background:
     radial-gradient(circle at top left,#ffffff40,transparent 35%),
     radial-gradient(circle at bottom right,#ffffff25,transparent 30%);
-    z-index:-1;
+    z-index:-2;
+}
+
+.background-clock{
+    position:fixed;
+    top:40px;
+    left:40px;
+    width:260px;
+    height:260px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:0;
+    pointer-events:none;
+    opacity:.32;
+}
+
+.clock-face{
+    position:relative;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    border:2px solid rgba(255,255,255,.35);
+    box-shadow:0 20px 60px rgba(0,0,0,.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.clock-face::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at center,rgba(255,255,255,.45) 8%,transparent 35%);
+}
+
+.clock-face::after{
+    content:'';
+    position:absolute;
+    inset:12px;
+    border:2px dashed rgba(255,255,255,.28);
+    border-radius:50%;
+}
+
+.clock-hand{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform-origin:bottom center;
+    border-radius:10px;
+}
+
+.clock-hour{
+    width:8px;
+    height:60px;
+    background:rgba(255,255,255,.95);
+    transform:translate(-50%, -100%) rotate(0deg);
+    z-index:3;
+}
+
+.clock-minute{
+    width:6px;
+    height:82px;
+    background:rgba(255,255,255,.9);
+    transform:translate(-50%, -100%) rotate(0deg);
+    z-index:2;
+}
+
+.clock-second{
+    width:3px;
+    height:94px;
+    background:#fffb;
+    box-shadow:0 0 12px rgba(255,255,255,.65);
+    transform:translate(-50%, -100%) rotate(0deg);
+    z-index:1;
+}
+
+.clock-center{
+    position:absolute;
+    width:16px;
+    height:16px;
+    background:#fff;
+    border-radius:50%;
+    box-shadow:0 0 0 6px rgba(255,255,255,.18);
+    z-index:4;
+}
+
+.clock-label{
+    position:absolute;
+    bottom:18px;
+    font-size:12px;
+    color:rgba(255,255,255,.9);
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    z-index:4;
 }
 
 /* ==========================

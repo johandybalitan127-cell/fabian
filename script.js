@@ -123,6 +123,30 @@ function mostrarToast(mensaje, tipo = "error") {
     }, 3200);
 }
 
+function actualizarReloj() {
+    const horaHand = document.querySelector('.clock-hour');
+    const minutoHand = document.querySelector('.clock-minute');
+    const segundoHand = document.querySelector('.clock-second');
+
+    if (!horaHand || !minutoHand || !segundoHand) return;
+
+    const ahora = new Date();
+    const horas = ahora.getHours() % 12;
+    const minutos = ahora.getMinutes();
+    const segundos = ahora.getSeconds();
+
+    const gradosHoras = (horas + minutos / 60) * 30;
+    const gradosMinutos = (minutos + segundos / 60) * 6;
+    const gradosSegundos = segundos * 6;
+
+    horaHand.style.transform = `translate(-50%, -100%) rotate(${gradosHoras}deg)`;
+    minutoHand.style.transform = `translate(-50%, -100%) rotate(${gradosMinutos}deg)`;
+    segundoHand.style.transform = `translate(-50%, -100%) rotate(${gradosSegundos}deg)`;
+}
+
+setInterval(actualizarReloj, 1000);
+actualizarReloj();
+
 let modalConfirmCallback = null;
 
 function abrirModal({
