@@ -1146,6 +1146,26 @@ body.dark .buscador input{
 
     }
 
+    .hero{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .hero-img{
+        width:100%;
+        max-width:none;
+    }
+
+    .filtros{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .filtros button,
+    .btn-limpiar{
+        width:100%;
+    }
+
     .tarea{
 
         flex-direction:column;
@@ -1162,6 +1182,10 @@ body.dark .buscador input{
 
         justify-content:flex-end;
 
+    }
+
+    .prioridad-resumen{
+        grid-template-columns:1fr;
     }
 
 }
